@@ -192,6 +192,18 @@ namespace AutoUpdaterDotNET
                         processStartInfo.Arguments += " " + installerArgs;
                     }
                 }
+                else if (extension.Equals(".msp", StringComparison.OrdinalIgnoreCase))
+                {
+                    processStartInfo = new ProcessStartInfo
+                    {
+                        FileName = "msiexec",
+                        Arguments = $"/p \"{tempPath}\"",
+                    };
+                    if (!string.IsNullOrEmpty(installerArgs))
+                    {
+                        processStartInfo.Arguments += " " + installerArgs;
+                    }
+                }
 
                 if (AutoUpdater.RunUpdateAsAdmin)
                 {
